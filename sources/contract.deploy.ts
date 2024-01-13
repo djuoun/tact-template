@@ -1,15 +1,18 @@
 import * as fs from "fs";
 import * as path from "path";
 import { Address, contractAddress } from "@ton/core";
-import { SampleTactContract } from "./output/sample_SampleTactContract";
+import { MyTactContract } from "./output/sample_MyTactContract";
 import { prepareTactDeployment } from "@tact-lang/deployer";
+import {_OWNER, _SEQ, _TEST_ONLY} from "./ton.config";
 
 (async () => {
     // Parameters
     let testnet = true;
-    let packageName = "sample_SampleTactContract.pkg";
-    let owner = Address.parse("kQD2vDOIq2asu516eGa5N1UXdhbJ8iWrK6Ug2MTAw4YDeRw4");
-    let init = await SampleTactContract.init(owner);
+    let packageName = "sample_MyTactContract.pkg";
+    // let owner = Address.parse("kQD2vDOIq2asu516eGa5N1UXdhbJ8iWrK6Ug2MTAw4YDeRw4");
+    let owner = Address.parse(_OWNER);
+    let init = await MyTactContract.init(owner);
+    // let init = await SampleTactContract.init(owner, _SEQ);
 
     // Load required data
     let address = contractAddress(0, init);

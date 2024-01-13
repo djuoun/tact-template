@@ -1,5 +1,5 @@
 ode_modules\\@tact-lang\\compiler\\stdlib\\stdlib.fc` `D:\\TON\\tact-template\
-ode_modules\\@tact-lang\\compiler\\stdlib\\stdlib_ex.fc` `D:/TON/tact-template/sources/output/sample_SampleTactContract.code.fc` incl:`D:/TON/tact-template/sources/output/sample_SampleTactContract.headers.fc` incl:`D:/TON/tact-template/sources/output/sample_SampleTactContract.stdlib.fc` incl:`D:/TON/tact-template/sources/output/sample_SampleTactContract.constants.fc` incl:`D:/TON/tact-template/sources/output/sample_SampleTactContract.storage.fc` 
+ode_modules\\@tact-lang\\compiler\\stdlib\\stdlib_ex.fc` `D:/TON/tact-template/sources/output/sample_MyTactContract.code.fc` incl:`D:/TON/tact-template/sources/output/sample_MyTactContract.headers.fc` incl:`D:/TON/tact-template/sources/output/sample_MyTactContract.stdlib.fc` incl:`D:/TON/tact-template/sources/output/sample_MyTactContract.constants.fc` incl:`D:/TON/tact-template/sources/output/sample_MyTactContract.storage.fc` 
 PROGRAM{
   DECLPROC __tact_verify_address
   DECLPROC __tact_load_address
@@ -14,29 +14,35 @@ PROGRAM{
   DECLPROC $DeployOk$_store
   DECLPROC $DeployOk$_store_cell
   DECLPROC $Add$_load
-  DECLPROC $SampleTactContract$_store
-  DECLPROC $SampleTactContract$_load
+  DECLPROC $Minus$_load
+  DECLPROC $MyTactContract$_store
+  DECLPROC $MyTactContract$_load
   DECLPROC $StateInit$_not_null
-  DECLPROC $SampleTactContract$init$_load
-  DECLPROC $SampleTactContract$_contract_init
-  DECLPROC $SampleTactContract$_contract_load
-  DECLPROC $SampleTactContract$_contract_store
+  DECLPROC $MyTactContract$init$_load
+  DECLPROC $MyTactContract$_contract_init
+  DECLPROC $MyTactContract$_contract_load
+  DECLPROC $MyTactContract$_contract_store
   DECLPROC $global_send
-  DECLPROC $SampleTactContract$_fun_add
-  DECLPROC $SampleTactContract$_fun_counter
+  DECLPROC $MyTactContract$_fun_add
+  DECLPROC $MyTactContract$_fun_minus
+  DECLPROC $MyTactContract$_fun_counter
+  DECLPROC $MyTactContract$_fun_getter
   DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
-  DECLPROC $SampleTactContract$_fun_forward
-  DECLPROC $SampleTactContract$_fun_reply
-  DECLPROC $SampleTactContract$_fun_notify
+  DECLPROC $MyTactContract$_fun_forward
+  DECLPROC $MyTactContract$_fun_reply
+  DECLPROC $MyTactContract$_fun_notify
   DECLPROC $DeployOk$_constructor_queryId
-  DECLPROC $SampleTactContract$_internal_binary_Add
-  DECLPROC $SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae
-  DECLPROC $SampleTactContract$_internal_binary_Deploy
+  DECLPROC $MyTactContract$_internal_binary_Add
+  DECLPROC $MyTactContract$_internal_binary_Minus
+  DECLPROC $MyTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae
+  DECLPROC $MyTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e
+  DECLPROC $MyTactContract$_internal_binary_Deploy
   104984 DECLMETHOD %counter
+  101268 DECLMETHOD %getter
   113617 DECLMETHOD supported_interfaces
   121275 DECLMETHOD get_abi_ipfs
   115390 DECLMETHOD lazy_deployment_completed
-  DECLPROC $SampleTactContract$_contract_router_internal
+  DECLPROC $MyTactContract$_contract_router_internal
   DECLPROC recv_internal
   DECLGLOBVAR __tact_context
   DECLGLOBVAR __tact_context_sender
@@ -120,12 +126,21 @@ PROGRAM{
     32 LDU
     SWAP
   }>
-  $SampleTactContract$_store PROCINLINE:<{
+  $Minus$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2759561417 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    SWAP
+  }>
+  $MyTactContract$_store PROCINLINE:<{
     -ROT
     __tact_store_address INLINECALLDICT
     32 STU
   }>
-  $SampleTactContract$_load PROCINLINE:<{
+  $MyTactContract$_load PROCINLINE:<{
     __tact_load_address INLINECALLDICT
     SWAP
     32 LDU
@@ -137,13 +152,13 @@ PROGRAM{
     128 THROWIF
     2 UNTUPLE
   }>
-  $SampleTactContract$init$_load PROCINLINE:<{
+  $MyTactContract$init$_load PROCINLINE:<{
     __tact_load_address INLINECALLDICT
   }>
-  $SampleTactContract$_contract_init PROCREF:<{
+  $MyTactContract$_contract_init PROCREF:<{
     0 PUSHINT
   }>
-  $SampleTactContract$_contract_load PROCREF:<{
+  $MyTactContract$_contract_load PROCREF:<{
     c4 PUSH
     CTOS
     LDREF
@@ -152,7 +167,7 @@ PROGRAM{
     1 LDI
     SWAP
     IFJMP:<{
-      $SampleTactContract$_load INLINECALLDICT
+      $MyTactContract$_load INLINECALLDICT
       1 2 BLKDROP2
     }>
     MYADDR
@@ -160,12 +175,12 @@ PROGRAM{
     10 PUSHPOW2
     EQUAL
     137 THROWIFNOT
-    $SampleTactContract$init$_load INLINECALLDICT
+    $MyTactContract$init$_load INLINECALLDICT
     SWAP
     ENDS
-    $SampleTactContract$_contract_init INLINECALLDICT
+    $MyTactContract$_contract_init INLINECALLDICT
   }>
-  $SampleTactContract$_contract_store PROCINLINE:<{
+  $MyTactContract$_contract_store PROCINLINE:<{
     NEWC
     __tact_context_sys GETGLOB
     SWAP
@@ -174,7 +189,7 @@ PROGRAM{
     SWAP
     1 STI
     -ROT
-    $SampleTactContract$_store INLINECALLDICT
+    $MyTactContract$_store INLINECALLDICT
     ENDC
     c4 POP
   }>
@@ -280,7 +295,7 @@ PROGRAM{
     SWAP
     SENDRAWMSG
   }>
-  $SampleTactContract$_fun_add PROCREF:<{
+  $MyTactContract$_fun_add PROCREF:<{
     __tact_context_get INLINECALLDICT
     s2 s3 XCHG
     3 BLKDROP
@@ -291,12 +306,26 @@ PROGRAM{
     THROWANYIFNOT
     ADD
   }>
-  $SampleTactContract$_fun_counter PROCREF:<{
+  $MyTactContract$_fun_minus PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    s3 PUSH
+    4429 PUSHINT
+    s0 s2 XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    THROWANYIFNOT
+    SUB
+  }>
+  $MyTactContract$_fun_counter PROCREF:<{
+    DUP
+  }>
+  $MyTactContract$_fun_getter PROCREF:<{
     DUP
   }>
   $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
   }>
-  $SampleTactContract$_fun_forward PROCREF:<{
+  $MyTactContract$_fun_forward PROCREF:<{
     PUSHNULL
     PUSHNULL
     s2 PUSH
@@ -318,39 +347,53 @@ PROGRAM{
     $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
     $global_send INLINECALLDICT
   }>
-  $SampleTactContract$_fun_reply PROCINLINE:<{
+  $MyTactContract$_fun_reply PROCINLINE:<{
     __tact_context_get_sender INLINECALLDICT
     SWAP
     TRUE
     PUSHNULL
-    $SampleTactContract$_fun_forward INLINECALLDICT
+    $MyTactContract$_fun_forward INLINECALLDICT
   }>
-  $SampleTactContract$_fun_notify PROCINLINE:<{
+  $MyTactContract$_fun_notify PROCINLINE:<{
     __tact_context_get_sender INLINECALLDICT
     SWAP
     FALSE
     PUSHNULL
-    $SampleTactContract$_fun_forward INLINECALLDICT
+    $MyTactContract$_fun_forward INLINECALLDICT
   }>
   $DeployOk$_constructor_queryId PROCINLINE:<{
   }>
-  $SampleTactContract$_internal_binary_Add PROCINLINE:<{
-    $SampleTactContract$_fun_add INLINECALLDICT
+  $MyTactContract$_internal_binary_Add PROCINLINE:<{
+    $MyTactContract$_fun_add INLINECALLDICT
   }>
-  $SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae PROCINLINE:<{
+  $MyTactContract$_internal_binary_Minus PROCINLINE:<{
+    $MyTactContract$_fun_minus INLINECALLDICT
+  }>
+  $MyTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae PROCINLINE:<{
     1 PUSHINT
-    $SampleTactContract$_fun_add INLINECALLDICT
+    $MyTactContract$_fun_add INLINECALLDICT
     B{b5ee9c7241010101001100001e00000000696e6372656d656e7465648430bf20} B>boc PUSHREF
-    $SampleTactContract$_fun_reply INLINECALLDICT
+    $MyTactContract$_fun_reply INLINECALLDICT
   }>
-  $SampleTactContract$_internal_binary_Deploy PROCINLINE:<{
+  $MyTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e PROCINLINE:<{
+    1 PUSHINT
+    $MyTactContract$_fun_minus INLINECALLDICT
+    B{b5ee9c7241010101001100001e0000000064656372656d656e7465647f812353} B>boc PUSHREF
+    $MyTactContract$_fun_reply INLINECALLDICT
+  }>
+  $MyTactContract$_internal_binary_Deploy PROCINLINE:<{
     $DeployOk$_constructor_queryId INLINECALLDICT
     $DeployOk$_store_cell INLINECALLDICT
-    $SampleTactContract$_fun_notify INLINECALLDICT
+    $MyTactContract$_fun_notify INLINECALLDICT
   }>
   %counter PROC:<{
-    $SampleTactContract$_contract_load INLINECALLDICT
-    $SampleTactContract$_fun_counter INLINECALLDICT
+    $MyTactContract$_contract_load INLINECALLDICT
+    $MyTactContract$_fun_counter INLINECALLDICT
+    2 1 BLKDROP2
+  }>
+  %getter PROC:<{
+    $MyTactContract$_contract_load INLINECALLDICT
+    $MyTactContract$_fun_getter INLINECALLDICT
     2 1 BLKDROP2
   }>
   supported_interfaces PROC:<{
@@ -360,7 +403,7 @@ PROGRAM{
     209474421377847335869795010607481022628 PUSHINT
   }>
   get_abi_ipfs PROC:<{
-    x{697066733a2f2f516d597a51484e326e3644317a4542754a79426e4a726e6d6851577a675a5768614e70706d7773414657346b4e69} PUSHSLICE
+    x{697066733a2f2f516d6441384d7359644c44616f69576b4e6a574d7a4b6a565046616277587a477534794a6d475345334b64764675} PUSHSLICE
   }>
   lazy_deployment_completed PROC:<{
     c4 PUSH
@@ -368,7 +411,7 @@ PROGRAM{
     1 LDI
     SWAP
   }>
-  $SampleTactContract$_contract_router_internal PROCREF:<{
+  $MyTactContract$_contract_router_internal PROCREF:<{
     c2 SAVE
     SAMEALTSAVE
     SWAP
@@ -392,7 +435,17 @@ PROGRAM{
       DROP
       $Add$_load INLINECALLDICT
       NIP
-      $SampleTactContract$_internal_binary_Add INLINECALLDICT
+      $MyTactContract$_internal_binary_Add INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2759561417 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Minus$_load INLINECALLDICT
+      NIP
+      $MyTactContract$_internal_binary_Minus INLINECALLDICT
       TRUE
     }>
     DUP
@@ -402,16 +455,25 @@ PROGRAM{
       DROP
       $Deploy$_load INLINECALLDICT
       NIP
-      $SampleTactContract$_internal_binary_Deploy INLINECALLDICT
+      $MyTactContract$_internal_binary_Deploy INLINECALLDICT
       TRUE
     }>
     0 EQINT
     IF:<{
       HASHSU
+      DUP
       89092981215441470209245890604563109773385607357076622359718516871332286001838 PUSHINT
       EQUAL
       IFJMP:<{
-        $SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae INLINECALLDICT
+        DROP
+        $MyTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      60414430498665911021786040396987709422365243451461403364463093175528667663422 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $MyTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e INLINECALLDICT
         TRUE
         RETALT
       }>
@@ -438,10 +500,10 @@ PROGRAM{
     __tact_context SETGLOB
     s0 s2 XCHG
     __tact_context_sender SETGLOB
-    $SampleTactContract$_contract_load INLINECALLDICT
+    $MyTactContract$_contract_load INLINECALLDICT
     2SWAP
-    $SampleTactContract$_contract_router_internal INLINECALLDICT
+    $MyTactContract$_contract_router_internal INLINECALLDICT
     130 THROWIFNOT
-    $SampleTactContract$_contract_store INLINECALLDICT
+    $MyTactContract$_contract_store INLINECALLDICT
   }>
 }END>c

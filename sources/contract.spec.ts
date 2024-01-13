@@ -1,6 +1,6 @@
 import { toNano } from "@ton/core";
 import { ContractSystem } from "@tact-lang/emulator";
-import { SampleTactContract } from "./output/sample_SampleTactContract";
+import { MyTactContract } from "./output/sample_MyTactContract";
 
 describe("contract", () => {
     it("should deploy correctly", async () => {
@@ -8,7 +8,7 @@ describe("contract", () => {
         let system = await ContractSystem.create();
         let owner = system.treasure("owner");
         let nonOwner = system.treasure("non-owner");
-        let contract = system.open(await SampleTactContract.fromInit(owner.address));
+        let contract = system.open(await MyTactContract.fromInit(owner.address));
         system.name(contract.address, "main");
         let track = system.track(contract);
         await contract.send(owner, { value: toNano(1) }, { $$type: "Deploy", queryId: 0n });
