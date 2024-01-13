@@ -14,16 +14,16 @@ const Sleep = (ms: number)=> {
     });
 
     // open wallet v4 (notice the correct wallet version here)
-    const mnemonic = "excite tenant track brief card travel picture company suggest shed usage wire evolve advice lady inform key regular hockey pride health corn dish trigger"; // your 24 secret words (replace ... with the rest of the words)
-    const key = await mnemonicToPrivateKey(mnemonic.split(" "));
-    const wallet = WalletContractV4.create({ publicKey: key.publicKey, workchain: 0 });
+    // const mnemonic = "excite tenant track brief card travel picture company suggest shed usage wire evolve advice lady inform key regular hockey pride health corn dish trigger"; // your 24 secret words (replace ... with the rest of the words)
+    // const key = await mnemonicToPrivateKey(mnemonic.split(" "));
+    // const wallet = WalletContractV4.create({ publicKey: key.publicKey, workchain: 0 });
     
-    // let keyPair = await getKeypairFromFile('mnemonics.txt',_TEST_ONLY);
-    // const wallet = WalletContractV4.create({ publicKey: keyPair.publicKey, workchain: 0 });
-    // const address = wallet.address;
-    // console.info("Wallet address (bounceable)" + address.toString({urlSafe:true, bounceable:false, testOnly:_TEST_ONLY}))
-    // console.info("Wallet address (non-bounceable)" + address.toString({urlSafe:true, bounceable:true, testOnly:_TEST_ONLY}))
-    // console.info("Wallet address (HEX) " + address.toRawString())
+    let key = await getKeypairFromFile('mnemonics.txt',_TEST_ONLY);
+    const wallet = WalletContractV4.create({ publicKey: key.publicKey, workchain: 0 });
+    const address = wallet.address;
+    console.info("Wallet address (bounceable)" + address.toString({urlSafe:true, bounceable:false, testOnly:_TEST_ONLY}))
+    console.info("Wallet address (non-bounceable)" + address.toString({urlSafe:true, bounceable:true, testOnly:_TEST_ONLY}))
+    console.info("Wallet address (HEX) " + address.toRawString())
 
     // open wallet and read the current seqno of the wallet
     const walletContract = client.open(wallet);
