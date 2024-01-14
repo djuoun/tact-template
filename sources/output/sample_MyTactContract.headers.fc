@@ -45,6 +45,12 @@ cell $DeployOk$_store_cell((int) v) inline;
 ;; $Minus$_load
 (slice, ((int))) $Minus$_load(slice sc_0) inline;
 
+;; $Mul$_load
+(slice, ((int))) $Mul$_load(slice sc_0) inline;
+
+;; $Div$_load
+(slice, ((int))) $Div$_load(slice sc_0) inline;
+
 ;; $MyTactContract$_store
 builder $MyTactContract$_store(builder build_0, (slice, int) v) inline;
 
@@ -74,6 +80,12 @@ builder $MyTactContract$_store(builder build_0, (slice, int) v) inline;
 
 ;; $MyTactContract$_fun_minus
 ((slice, int), ()) $MyTactContract$_fun_minus((slice, int) $self, int $v) impure inline_ref;
+
+;; $MyTactContract$_fun_mul
+((slice, int), ()) $MyTactContract$_fun_mul((slice, int) $self, int $v) impure inline_ref;
+
+;; $MyTactContract$_fun_div
+((slice, int), ()) $MyTactContract$_fun_div((slice, int) $self, int $v) impure inline_ref;
 
 ;; $MyTactContract$_fun_counter
 ((slice, int), int) $MyTactContract$_fun_counter((slice, int) $self) impure inline_ref;

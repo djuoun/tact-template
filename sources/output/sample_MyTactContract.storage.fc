@@ -76,6 +76,30 @@ cell $DeployOk$_store_cell((int) v) inline {
 }
 
 ;;
+;; Type: Mul
+;; Header: 0x3226bf8f
+;; TLB: mul#3226bf8f amount:uint32 = Mul
+;;
+
+(slice, ((int))) $Mul$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 841400207);
+    var v'amount = sc_0~load_uint(32);
+    return (sc_0, (v'amount));
+}
+
+;;
+;; Type: Div
+;; Header: 0xf24cfea9
+;; TLB: div#f24cfea9 amount:uint32 = Div
+;;
+
+(slice, ((int))) $Div$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 4065132201);
+    var v'amount = sc_0~load_uint(32);
+    return (sc_0, (v'amount));
+}
+
+;;
 ;; Type: MyTactContract
 ;;
 

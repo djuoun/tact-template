@@ -1,9 +1,9 @@
 # TACT Compilation Report
 Contract: MyTactContract
-BOC Size: 1002 bytes
+BOC Size: 1107 bytes
 
 # Types
-Total Types: 8
+Total Types: 10
 
 ## StateInit
 TLB: `_ code:^cell data:^cell = StateInit`
@@ -36,6 +36,14 @@ Signature: `Add{amount:uint32}`
 ## Minus
 TLB: `minus#a47b90c9 amount:uint32 = Minus`
 Signature: `Minus{amount:uint32}`
+
+## Mul
+TLB: `mul#3226bf8f amount:uint32 = Mul`
+Signature: `Mul{amount:uint32}`
+
+## Div
+TLB: `div#f24cfea9 amount:uint32 = Div`
+Signature: `Div{amount:uint32}`
 
 # Get Methods
 Total Get Methods: 2

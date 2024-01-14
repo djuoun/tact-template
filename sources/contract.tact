@@ -6,6 +6,12 @@ message Add {
 message Minus {
     amount: Int as uint32;
 }
+message Mul {
+    amount: Int as uint32;
+}
+message Div {
+    amount: Int as uint32;
+}
 contract MyTactContract with Deployable {
 
     owner: Address;
@@ -34,6 +40,24 @@ contract MyTactContract with Deployable {
         // Update counter
         self.counter = (self.counter - v);
     }
+    fun mul(v: Int) {
+        
+        // Check sender
+        let ctx: Context = context();
+        require(ctx.sender == self.owner, "Invalid sender");
+        
+        // Update counter
+        self.counter = (self.counter * v);
+    }
+    fun div(v: Int) {
+        
+        // Check sender
+        let ctx: Context = context();
+        require(ctx.sender == self.owner, "Invalid sender");
+        
+        // Update counter
+        self.counter = (self.counter / v);
+    }
 
     receive(msg: Add) {
         self.add(msg.amount);
@@ -41,13 +65,19 @@ contract MyTactContract with Deployable {
     receive(msg: Minus) {
         self.minus(msg.amount);
     }
+    receive(msg: Mul) {
+        self.mul(msg.amount);
+    }
+    receive(msg: Div) {
+        self.div(msg.amount);
+    }
 
     receive("increment") {
         self.add(1);
         self.reply("incremented".asComment());
     }
     receive("decrement") {
-         self.minus(1);
+         self.mul(1);
          self.reply("decremented".asComment());
      }
 

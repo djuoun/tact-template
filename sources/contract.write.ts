@@ -1,6 +1,6 @@
 import { Address, contractAddress, toNano } from "@ton/core";
 import { TonClient4, WalletContractV4 } from "@ton/ton";
-import { MyTactContract } from "./output/sample_MyTactContract";
+import { MyTactContract, Add, Minus, Mul, Div } from "./output/sample_MyTactContract";
 import { mnemonicToPrivateKey } from "@ton/crypto";
 import {_ENDPOINT_MAINNET, _ENDPOINT_TESTNET, _OWNER, _SEQ, _TEST_ONLY, getKeypairFromFile} from "./ton.config";
 
@@ -35,11 +35,35 @@ const Sleep = (ms: number)=> {
     let contract_address = contractAddress(0, init);
     let contract = await MyTactContract.fromAddress(contract_address);
     let contract_open = await client.open(contract);
+//============
+    // const a:bigint = BigInt(Math.floor(Math.random() * 100)); // 随机生成 0 到 100 之间的数
+    // const b:bigint = BigInt(Math.floor(Math.random() * 100)); // 随机生成 0 到 100 之间的数
 
+    // let msg = randomOperation(a, b)
+
+    // console.log(`A:${a} B:${b} ... msg:`, msg)
+//============
     // send message to contract
-    await contract_open.send(walletSender, { value: toNano(1) }, "decrement");
+    await contract_open.send(walletSender, { value: toNano('0.01') },{ '$$type': 'Div', amount: 2n});
     
     await Sleep(3000);
     console.log("Getter Value: " + (await contract_open.getGetter()));
+    
+    function randomOperation(a: bigint, b: bigint): any {
+        //
+        const operations = [
+            "Add",
+            "Minus",
+            "Mul",
+            "Div"
+        ];
+        const randomOp = operations[Math.floor(Math.random() * operations.length)];
+        return {
+            $$type: randomOp,
+            amount1: a,
+            amount2: b
+        };
+    }
+
 })();
 
